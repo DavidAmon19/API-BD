@@ -28,8 +28,18 @@ const inserirNovoCliente = async (request, response) => {
   response.status(201).send({ mensage: `Cliente cadastrado com sucesso` });
 };
 
+const deletarCliente = async (request,response) => {
+    let id = request.params.id;
+    // let {novoId} = request.params;
+
+    let dados = await database.executar(`DELETE from ${TABLE} WHERE id = ${id}`)
+
+    response.send({mensage: `Cliente deletado com sucesso`})
+}
+
 module.exports = {
   buscarClientes,
   buscarClientesPorId,
-  inserirNovoCliente
+  inserirNovoCliente,
+  deletarCliente
 };
