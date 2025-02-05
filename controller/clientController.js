@@ -37,9 +37,29 @@ const deletarCliente = async (request,response) => {
     response.send({mensage: `Cliente deletado com sucesso`})
 }
 
+const atualizarCliente = async (request, response) =>{
+
+    let id = request.params.id;
+    let { nome, email, data_cadastro, telefone, classe } = request.body;
+
+    if(!nome){
+        response.send({mensage: `Erro campo nome está vazio`})
+    }
+
+    let dados = await database.executar(`
+        UPDATE ${TABLE}
+        SET nome = '${nome}', email = '${email}', data_cadastro = '${data_cadastro}',
+        telefone = '${telefone}', classe = '${classe}'
+        WHERE id = ${id}
+        `)
+
+        response.send({mensage: `Usuario atualizado com sucesso`});
+}
+
 module.exports = {
   buscarClientes,
   buscarClientesPorId,
   inserirNovoCliente,
-  deletarCliente
+  deletarCliente,
+  atualizarCliente
 };
