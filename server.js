@@ -5,6 +5,8 @@ const app     = express();
 const port    = 9090;
 const clientRoutes = require("./routes/clientRoute");
 
+dotenv.config();
+
 app.use(express.json());
 app.use(cors());
 
