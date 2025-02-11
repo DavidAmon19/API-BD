@@ -10,8 +10,21 @@ const dadosClientes = async () =>{
     return dados;
 }
 
+const dadoClienteId = async (id) =>{
+    let sql = `SELECT * FROM ${TABLE} WHERE id = ?;`;
+    let dados = await database.executar(sql, [id]);
+    return dados;
+}
+
+const deletarDadoCliente = async (id) =>{
+    let sql = `DELETE FROM ${TABLE} WHERE id = ?;`;
+    await database.executar(sql, [id]);
+    return {mensagem: `Cliente deletado com sucesso`};
+}
 
 
 module.exports = {
-    dadosClientes
+    dadosClientes,
+    dadoClienteId,
+    deletarDadoCliente
 }
