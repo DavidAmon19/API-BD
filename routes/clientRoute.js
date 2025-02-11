@@ -4,8 +4,8 @@ const clientController = require("../controller/clientController");
 
 router.get('/', clientController.buscarClientes);
 router.get('/:id', clientController.buscarClientesPorId);
-// router.post('/', clientController.inserirNovoCliente);
+router.post('/', clientController.inserirNovoCliente);
 router.delete('/:id', clientController.deletarCliente);
-// router.put('/:id', clientController.atualizarCliente);
+router.put('/', clientController.atualizarCliente);
 
 module.exports = router;

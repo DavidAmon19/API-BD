@@ -10,11 +10,6 @@ const conectar = async () => {
   });
 };
 
-// select * from tabela where id
-// update tabela set nome = novonome where id
-// where id = ${id}
-// where nome = ${nomeUsuario}
-// VALUES (${NOME}, ${SOBRENOME})
 const executar = async (sql, params) => {
   const database = await conectar();
   let [result] = await database.query(sql, params);

@@ -19,9 +19,23 @@ const deletarCliente = async (request, response) =>{
   response.json(dados);
 }
 
+const inserirNovoCliente = async (request, response) =>{
+  let {nome, email, data_cadastro, telefone, classe} = request.body;
+  let dados = await clientServices.inserirDadoCliente(nome,email,data_cadastro,telefone,classe);
+  response.json(dados);
+}
+
+const atualizarCliente = async (request, response) => {
+  let {id, nome, email, data_cadastro, telefone, classe} = request.body;
+  let dados = await clientServices.atualizarDadoCliente(id,nome,email,data_cadastro,telefone,classe);
+  response.json(dados);
+}
+
 
 module.exports = {
   buscarClientes,
   buscarClientesPorId,
-  deletarCliente
+  deletarCliente,
+  inserirNovoCliente,
+  atualizarCliente
 }

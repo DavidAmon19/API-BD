@@ -16,6 +16,30 @@ const dadoClienteId = async (id) =>{
     return dados;
 }
 
+const inserirDadoCliente = async (nome, email, data_cadastro, telefone, classe) =>{
+    let sql = `
+        INSERT INTO ${TABLE}(nome, email, data_cadastro,telefone,classe)
+        VALUES (?,?,?,?,?);
+    `
+    let params = [nome,email,data_cadastro,telefone,classe];
+    await database.executar(sql, params);
+
+    return {mensagem: `Cliente cadastrado com sucesso`};
+}
+
+const atualizarDadoCliente = async (id,nome,email,data_cadastro,telefone,classe) =>{
+
+    let sql = `
+        UPDATE ${TABLE}
+        SET nome = ?, email = ?, data_cadastro = ?, telefone = ?, classe = ?
+        WHERE id = ?;
+    `;
+
+    let params = [nome,email,data_cadastro,telefone,classe,id];
+    await database.executar(sql, params);
+    return {mensagem: `Cliente atualizado com sucesso`};
+}
+
 const deletarDadoCliente = async (id) =>{
     let sql = `DELETE FROM ${TABLE} WHERE id = ?;`;
     await database.executar(sql, [id]);
@@ -26,5 +50,7 @@ const deletarDadoCliente = async (id) =>{
 module.exports = {
     dadosClientes,
     dadoClienteId,
-    deletarDadoCliente
+    deletarDadoCliente,
+    inserirDadoCliente,
+    atualizarDadoCliente
 }
