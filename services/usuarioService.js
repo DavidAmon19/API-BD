@@ -73,3 +73,8 @@ module.exports = {
     deletarUsuario,
     loginUsuario
 }
+
+
+
+// Davi12345
+// io23u4nto398fu7bwqd9fga8sgbf

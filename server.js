@@ -4,6 +4,7 @@ const dotenv  = require("dotenv");
 const app     = express();
 const port    = 9090;
 const clientRoutes = require("./routes/clientRoute");
+const usuarioRoutes = require("./routes/usuarioRoute");
 
 dotenv.config();
 
@@ -12,6 +13,8 @@ app.use(cors());
 
 
 app.use('/clientes', clientRoutes);
+app.use('/usuarios', usuarioRoutes);
+
 app.listen(port, ()=>{
     try {
         console.log(`Servidor rodando no link http://localhost:${port}`)
